@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.mongodb.MongoException;
+import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -28,6 +30,20 @@ public class GlobalExceptionHandler {
                 .collect(Collectors.joining(", "));
 
         return buildErrorResponse(HttpStatus.BAD_REQUEST, validationMessage);
+    }
+
+    @ExceptionHandler(DataAccessResourceFailureException.class)
+    public ResponseEntity<Map<String, Object>> handleDatabaseConnectivity(DataAccessResourceFailureException ex) {
+        return buildErrorResponse(
+                HttpStatus.SERVICE_UNAVAILABLE,
+                "Database is unavailable. Ensure MongoDB is running and spring.data.mongodb.uri is correct.");
+    }
+
+    @ExceptionHandler(MongoException.class)
+    public ResponseEntity<Map<String, Object>> handleMongoException(MongoException ex) {
+        return buildErrorResponse(
+                HttpStatus.SERVICE_UNAVAILABLE,
+                "Could not connect to MongoDB. Check your MongoDB server and connection URI.");
     }
 
     @ExceptionHandler(Exception.class)
