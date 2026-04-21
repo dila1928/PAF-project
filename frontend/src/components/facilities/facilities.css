@@ -1,10 +1,10 @@
 .fc-card {
-  background: var(--fc-surface, #fff);
-  border: 1px solid var(--fc-border, #e2e8f0);
-  border-radius: 12px;
+  background: var(--fc-surface, #f8fafd);
+  border: 1px solid var(--fc-border, #e5eaf1);
+  border-radius: 10px;
   padding: 1.25rem 1.5rem;
   margin-bottom: 1.25rem;
-  box-shadow: 0 1px 2px rgb(15 23 42 / 6%);
+  box-shadow: 0 1px 2px rgb(15 23 42 / 3%);
 }
 
 .fc-card-header {
@@ -17,9 +17,11 @@
 
 .fc-card-title {
   margin: 0;
-  font-size: 1.125rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   font-weight: 600;
-  color: var(--fc-text, #0f172a);
+  color: var(--fc-muted, #64748b);
 }
 
 .fc-filters-grid {
@@ -39,7 +41,9 @@
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  font-size: 0.875rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--fc-muted, #475569);
 }
 
@@ -51,8 +55,10 @@
 .fc-field select,
 .fc-field textarea {
   font: inherit;
+  text-transform: none;
+  letter-spacing: normal;
   padding: 0.5rem 0.65rem;
-  border-radius: 8px;
+  border-radius: 6px;
   border: 1px solid var(--fc-border, #e2e8f0);
   background: #fff;
   color: var(--fc-text, #0f172a);
@@ -72,14 +78,16 @@
 .fc-btn {
   font: inherit;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 0.5rem 1rem;
   border: 1px solid transparent;
+  font-weight: 600;
 }
 
 .fc-btn-primary {
-  background: #2563eb;
+  background: #365787;
   color: #fff;
+  box-shadow: 0 2px 6px rgb(54 87 135 / 30%);
 }
 
 .fc-btn-primary:disabled {
@@ -94,13 +102,16 @@
 }
 
 .fc-btn-danger {
-  background: #dc2626;
-  color: #fff;
+  background: transparent;
+  color: #cf2f2f;
+  border-color: transparent;
 }
 
 .fc-btn-small {
-  padding: 0.35rem 0.65rem;
-  font-size: 0.8125rem;
+  padding: 0.25rem 0.45rem;
+  font-size: 0.78rem;
+  min-width: 1.9rem;
+  text-align: center;
 }
 
 a.fc-btn {
@@ -112,8 +123,9 @@ a.fc-btn {
 
 .fc-table-wrap {
   overflow-x: auto;
-  border-radius: 12px;
-  border: 1px solid var(--fc-border, #e2e8f0);
+  border-radius: 8px;
+  border: 1px solid var(--fc-border, #e5eaf1);
+  background: #fff;
 }
 
 .fc-table {
@@ -124,15 +136,19 @@ a.fc-btn {
 
 .fc-table th,
 .fc-table td {
-  padding: 0.65rem 0.85rem;
+  padding: 0.9rem 0.85rem;
   text-align: left;
   border-bottom: 1px solid var(--fc-border, #e2e8f0);
+  vertical-align: top;
 }
 
 .fc-table th {
-  background: #f8fafc;
+  background: #f2f5f9;
   font-weight: 600;
-  color: var(--fc-muted, #475569);
+  color: #607188;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .fc-table tr:last-child td {
@@ -173,12 +189,29 @@ a.fc-btn {
 
 .fc-badge {
   display: inline-block;
-  padding: 0.15rem 0.45rem;
-  border-radius: 6px;
-  background: #eef2ff;
-  color: #3730a3;
-  font-size: 0.75rem;
+  padding: 0.13rem 0.45rem;
+  border-radius: 999px;
+  background: #edf2f8;
+  color: #556987;
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   font-weight: 500;
+}
+
+.fc-status-active {
+  background: #dff1ff;
+  color: #256f9c;
+}
+
+.fc-status-out {
+  background: #ffe6e6;
+  color: #b04040;
+}
+
+.fc-status-default {
+  background: #ecf2f8;
+  color: #52657f;
 }
 
 @media (max-width: 640px) {

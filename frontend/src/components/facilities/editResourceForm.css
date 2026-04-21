@@ -1,0 +1,61 @@
+.fc-edit-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.fc-edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
+.fc-edit-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.9fr;
+  gap: 1rem;
+}
+
+.fc-edit-panel {
+  margin: 0;
+}
+
+.fc-edit-panel-title {
+  margin: 0 0 1rem;
+  font-size: 1.45rem;
+  line-height: 1.2;
+  color: #18375f;
+}
+
+.fc-edit-hours {
+  margin-top: 1rem;
+}
+
+.fc-edit-note {
+  margin: 1rem 0 0;
+  padding: 0.8rem;
+  border-radius: 8px;
+  background: #f1f5fb;
+  color: #5b6f8b;
+  font-size: 0.82rem;
+}
+
+.fc-edit-mobile-submit {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .fc-edit-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .fc-edit-actions {
+    display: none;
+  }
+
+  .fc-edit-mobile-submit {
+    display: flex;
+  }
+}
