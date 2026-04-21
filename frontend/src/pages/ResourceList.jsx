@@ -10,13 +10,18 @@ import {
   searchResources,
 } from '../services/resourceApi'
 import { getApiErrorMessage } from '../utils/apiError'
-import { toTimeInputValue } from '../utils/timeFormat'
 
 const initialFilters = { type: '', location: '', minCapacity: '' }
 
 function formatLabel(value) {
   if (value == null) return '—'
   return String(value).replaceAll('_', ' ')
+}
+
+function getStatusClass(status) {
+  if (status === 'ACTIVE') return 'fc-status-active'
+  if (status === 'OUT_OF_SERVICE') return 'fc-status-out'
+  return 'fc-status-default'
 }
 
 function hasActiveFilters(f) {
@@ -105,11 +110,20 @@ export function ResourceList() {
 
   return (
     <div className="fc-page">
-      <header>
-        <h1 className="fc-page-title">Facilities &amp; Assets Catalogue</h1>
-        <p className="fc-page-sub">
-          Module A — browse, filter, add, and manage campus resources.
-        </p>
+      <header className="fc-page-header">
+        <div>
+          <h1 className="fc-page-title">Resource Management</h1>
+          <p className="fc-page-sub">
+            Oversee and organize all campus structural assets and equipment.
+          </p>
+        </div>
+        <button
+          type="button"
+          className="fc-btn fc-btn-primary fc-btn-add"
+          onClick={() => setShowAdd((v) => !v)}
+        >
+          {showAdd ? 'Hide Form' : '+ Add Resource'}
+        </button>
       </header>
 
       <SearchFilter
@@ -118,16 +132,6 @@ export function ResourceList() {
         onSearch={handleApplyFilters}
         onReset={handleResetFilters}
       />
-
-      <div className="fc-toolbar">
-        <button
-          type="button"
-          className="fc-btn fc-btn-primary"
-          onClick={() => setShowAdd((v) => !v)}
-        >
-          {showAdd ? 'Hide form' : 'Add resource'}
-        </button>
-      </div>
 
       {showAdd && (
         <AddResourceForm
@@ -139,8 +143,7 @@ export function ResourceList() {
         />
       )}
 
-      <section className="fc-card" aria-label="Resources list">
-        <h2 className="fc-card-title">Resources</h2>
+      <section className="fc-card fc-list-card" aria-label="Resources list">
         {listError && <p className="fc-error">{listError}</p>}
         {loading ? (
           <p className="fc-muted">Loading…</p>
@@ -153,7 +156,6 @@ export function ResourceList() {
                   <th>Type</th>
                   <th>Capacity</th>
                   <th>Location</th>
-                  <th>Hours</th>
                   <th>Status</th>
                   <th>Description</th>
                   <th aria-label="Actions" />
@@ -162,7 +164,7 @@ export function ResourceList() {
               <tbody>
                 {resources.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="fc-muted">
+                    <td colSpan={7} className="fc-muted">
                       No resources found.
                     </td>
                   </tr>
@@ -176,10 +178,10 @@ export function ResourceList() {
                       <td>{r.capacity ?? '—'}</td>
                       <td>{r.location ?? '—'}</td>
                       <td>
-                        {toTimeInputValue(r.availableFrom)} –{' '}
-                        {toTimeInputValue(r.availableTo)}
+                        <span className={`fc-badge ${getStatusClass(r.status)}`}>
+                          {formatLabel(r.status)}
+                        </span>
                       </td>
-                      <td>{formatLabel(r.status)}</td>
                       <td>{r.description?.trim() ? r.description : '—'}</td>
                       <td>
                         <div className="fc-actions">
@@ -187,14 +189,14 @@ export function ResourceList() {
                             to={`/resources/${r.id}/edit`}
                             className="fc-btn fc-btn-ghost fc-btn-small"
                           >
-                            Edit
+                            ✎
                           </Link>
                           <button
                             type="button"
                             className="fc-btn fc-btn-danger fc-btn-small"
                             onClick={() => handleDelete(r.id)}
                           >
-                            Delete
+                            ⌫
                           </button>
                         </div>
                       </td>
@@ -203,6 +205,26 @@ export function ResourceList() {
                 )}
               </tbody>
             </table>
+          </div>
+        )}
+        {!loading && (
+          <div className="fc-table-footer">
+            <span className="fc-muted fc-footer-text">
+              Showing {resources.length} facilities
+            </span>
+            <div className="fc-pagination">
+              <button type="button" className="fc-page-btn" aria-label="Previous page">
+                ‹
+              </button>
+              <button type="button" className="fc-page-btn is-active">
+                1
+              </button>
+              <button type="button" className="fc-page-btn">2</button>
+              <button type="button" className="fc-page-btn">3</button>
+              <button type="button" className="fc-page-btn" aria-label="Next page">
+                ›
+              </button>
+            </div>
           </div>
         )}
       </section>

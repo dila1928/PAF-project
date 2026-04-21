@@ -5,6 +5,7 @@ import '../components/facilities/facilities.css'
 import { getResourceById } from '../services/resourceApi'
 import { getApiErrorMessage } from '../utils/apiError'
 import './ResourceList.css'
+import './EditResource.css'
 
 export function EditResource() {
   const { id } = useParams()
@@ -53,19 +54,27 @@ export function EditResource() {
 
   return (
     <div className="fc-page">
-      <p className="fc-muted">
-        <Link to="/">← Back to catalogue</Link>
+      <p className="fc-edit-breadcrumb">
+        <Link to="/">← Resources / Management</Link>
       </p>
 
       {loading && <p className="fc-muted">Loading resource…</p>}
       {error && !loading && <p className="fc-error">{error}</p>}
       {resource && !loading && !error && (
-        <EditResourceForm
-          key={resource.id}
-          resource={resource}
-          onSaved={() => navigate('/')}
-          onCancel={() => navigate('/')}
-        />
+        <>
+          <header className="fc-edit-topbar">
+            <div>
+              <h1 className="fc-page-title">Edit Resource</h1>
+              <p className="fc-edit-id">ID: {resource.id}</p>
+            </div>
+          </header>
+          <EditResourceForm
+            key={resource.id}
+            resource={resource}
+            onSaved={() => navigate('/')}
+            onCancel={() => navigate('/')}
+          />
+        </>
       )}
     </div>
   )
