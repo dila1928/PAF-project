@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { AddResourceForm } from '../components/facilities/AddResourceForm'
-import { EditResourceForm } from '../components/facilities/EditResourceForm'
 import { SearchFilter } from '../components/facilities/SearchFilter'
 import '../components/facilities/facilities.css'
 import './ResourceList.css'
@@ -33,7 +33,6 @@ export function ResourceList() {
   const [listError, setListError] = useState(null)
   const [filters, setFilters] = useState(initialFilters)
   const [showAdd, setShowAdd] = useState(false)
-  const [editing, setEditing] = useState(null)
 
   async function loadResources(snapshot) {
     const f = snapshot !== undefined ? snapshot : filters
@@ -98,7 +97,6 @@ export function ResourceList() {
     }
     try {
       await deleteResource(id)
-      setEditing((current) => (current?.id === id ? null : current))
       await loadResources()
     } catch (err) {
       window.alert(getApiErrorMessage(err))
@@ -138,18 +136,6 @@ export function ResourceList() {
             loadResources()
           }}
           onCancel={() => setShowAdd(false)}
-        />
-      )}
-
-      {editing && (
-        <EditResourceForm
-          key={editing.id}
-          resource={editing}
-          onSaved={() => {
-            setEditing(null)
-            loadResources()
-          }}
-          onCancel={() => setEditing(null)}
         />
       )}
 
@@ -197,13 +183,12 @@ export function ResourceList() {
                       <td>{r.description?.trim() ? r.description : '—'}</td>
                       <td>
                         <div className="fc-actions">
-                          <button
-                            type="button"
+                          <Link
+                            to={`/resources/${r.id}/edit`}
                             className="fc-btn fc-btn-ghost fc-btn-small"
-                            onClick={() => setEditing(r)}
                           >
                             Edit
-                          </button>
+                          </Link>
                           <button
                             type="button"
                             className="fc-btn fc-btn-danger fc-btn-small"

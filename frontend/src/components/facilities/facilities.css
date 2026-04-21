@@ -103,6 +103,13 @@
   font-size: 0.8125rem;
 }
 
+a.fc-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  box-sizing: border-box;
+}
+
 .fc-table-wrap {
   overflow-x: auto;
   border-radius: 12px;
