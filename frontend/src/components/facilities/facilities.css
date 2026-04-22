@@ -1,10 +1,11 @@
 .fc-card {
-  background: var(--fc-surface, #f8fafd);
-  border: 1px solid var(--fc-border, #e5eaf1);
-  border-radius: 10px;
+  background: var(--fc-surface, #ffffffcc);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--fc-border, #dbe5f1);
+  border-radius: var(--fc-radius, 14px);
   padding: 1.25rem 1.5rem;
   margin-bottom: 1.25rem;
-  box-shadow: 0 1px 2px rgb(15 23 42 / 3%);
+  box-shadow: var(--fc-shadow, 0 10px 30px rgb(15 23 42 / 8%));
 }
 
 .fc-card-header {
@@ -17,10 +18,10 @@
 
 .fc-card-title {
   margin: 0;
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--fc-muted, #64748b);
 }
 
@@ -40,7 +41,7 @@
 .fc-field {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.45rem;
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -57,11 +58,20 @@
   font: inherit;
   text-transform: none;
   letter-spacing: normal;
-  padding: 0.5rem 0.65rem;
-  border-radius: 6px;
+  padding: 0.62rem 0.75rem;
+  border-radius: 10px;
   border: 1px solid var(--fc-border, #e2e8f0);
-  background: #fff;
+  background: var(--fc-surface-solid, #fff);
   color: var(--fc-text, #0f172a);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.fc-field input:focus,
+.fc-field select:focus,
+.fc-field textarea:focus {
+  outline: none;
+  border-color: var(--fc-primary, #3b82f6);
+  box-shadow: 0 0 0 4px rgb(59 130 246 / 15%);
 }
 
 .fc-field textarea {
@@ -78,16 +88,26 @@
 .fc-btn {
   font: inherit;
   cursor: pointer;
-  border-radius: 6px;
-  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  padding: 0.58rem 1rem;
   border: 1px solid transparent;
   font-weight: 600;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.fc-btn:hover {
+  transform: translateY(-1px);
 }
 
 .fc-btn-primary {
-  background: #365787;
+  background: linear-gradient(135deg, var(--fc-primary, #3b82f6), var(--fc-primary-strong, #2563eb));
   color: #fff;
-  box-shadow: 0 2px 6px rgb(54 87 135 / 30%);
+  box-shadow: 0 10px 18px rgb(37 99 235 / 24%);
 }
 
 .fc-btn-primary:disabled {
@@ -96,15 +116,15 @@
 }
 
 .fc-btn-ghost {
-  background: transparent;
+  background: #ffffffb8;
   border-color: var(--fc-border, #e2e8f0);
   color: var(--fc-text, #0f172a);
 }
 
 .fc-btn-danger {
-  background: transparent;
+  background: #fff1f2;
   color: #cf2f2f;
-  border-color: transparent;
+  border-color: #ffd6dc;
 }
 
 .fc-btn-small {
@@ -123,7 +143,7 @@ a.fc-btn {
 
 .fc-table-wrap {
   overflow-x: auto;
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid var(--fc-border, #e5eaf1);
   background: #fff;
 }
@@ -143,7 +163,7 @@ a.fc-btn {
 }
 
 .fc-table th {
-  background: #f2f5f9;
+  background: #f7f9fc;
   font-weight: 600;
   color: #607188;
   font-size: 0.58rem;
@@ -153,6 +173,14 @@ a.fc-btn {
 
 .fc-table tr:last-child td {
   border-bottom: none;
+}
+
+.fc-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.fc-table tbody tr:hover {
+  background: #f8fbff;
 }
 
 .fc-muted {
@@ -169,14 +197,14 @@ a.fc-btn {
 
 .fc-page-title {
   margin: 0 0 0.25rem;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 700;
   color: var(--fc-text, #0f172a);
 }
 
 .fc-page-sub {
   margin: 0 0 1.25rem;
-  color: var(--fc-muted, #64748b);
+  color: var(--fc-muted, #5c6f88);
   font-size: 0.9375rem;
 }
 
@@ -189,11 +217,11 @@ a.fc-btn {
 
 .fc-badge {
   display: inline-block;
-  padding: 0.13rem 0.45rem;
+  padding: 0.2rem 0.55rem;
   border-radius: 999px;
   background: #edf2f8;
   color: #556987;
-  font-size: 0.58rem;
+  font-size: 0.6rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   font-weight: 500;
@@ -215,6 +243,10 @@ a.fc-btn {
 }
 
 @media (max-width: 640px) {
+  .fc-card {
+    padding: 1rem;
+  }
+
   .fc-form {
     grid-template-columns: 1fr;
   }

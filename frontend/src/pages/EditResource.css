@@ -1,26 +1,31 @@
 .fc-edit-breadcrumb {
-  margin: 0 0 0.7rem;
+  margin: 0 0 0.9rem;
   font-size: 0.72rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
 .fc-edit-breadcrumb a {
-  color: #35537f;
+  color: #1d4ed8;
   text-decoration: none;
   font-weight: 600;
 }
 
+.fc-edit-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
 .fc-edit-topbar {
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
 }
 
 .fc-edit-id {
-  margin: 0.3rem 0 0;
+  margin: 0.4rem 0 0;
   display: inline-block;
-  font-size: 0.67rem;
-  color: #4f6786;
-  background: #e3edf9;
-  border-radius: 4px;
-  padding: 0.15rem 0.35rem;
+  font-size: 0.68rem;
+  color: #244a7a;
+  background: #e7f0fe;
+  border: 1px solid #cfe0ff;
+  border-radius: 999px;
+  padding: 0.2rem 0.5rem;
 }
