@@ -1,19 +1,20 @@
 .fc-edit-shell {
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 1rem;
 }
 
 .fc-edit-actions {
   display: flex;
   justify-content: flex-end;
   gap: 0.6rem;
+  padding: 0.25rem 0;
 }
 
 .fc-edit-grid {
   display: grid;
   grid-template-columns: 1.25fr 0.9fr;
-  gap: 1rem;
+  gap: 1.1rem;
 }
 
 .fc-edit-panel {
@@ -22,9 +23,9 @@
 
 .fc-edit-panel-title {
   margin: 0 0 1rem;
-  font-size: 1.45rem;
+  font-size: 1.25rem;
   line-height: 1.2;
-  color: #18375f;
+  color: #183b6b;
 }
 
 .fc-edit-hours {
@@ -33,9 +34,10 @@
 
 .fc-edit-note {
   margin: 1rem 0 0;
-  padding: 0.8rem;
-  border-radius: 8px;
-  background: #f1f5fb;
+  padding: 0.85rem;
+  border-radius: 10px;
+  background: #f4f8ff;
+  border: 1px solid #dce8f8;
   color: #5b6f8b;
   font-size: 0.82rem;
 }

@@ -1,7 +1,7 @@
 .fc-page {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 1.5rem 1rem 3rem;
+  padding: 1.5rem 1rem 2.5rem;
 }
 
 .fc-page-header {
@@ -13,7 +13,7 @@
 
 .fc-page-title {
   font-size: 2rem;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
 }
 
 .fc-page-sub {
@@ -27,7 +27,7 @@
 }
 
 .fc-filters {
-  background: #f3f6fa;
+  background: linear-gradient(160deg, #ffffffd6, #f6f9ffd4);
 }
 
 .fc-list-card {
@@ -45,8 +45,8 @@
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid #e5eaf1;
-  padding: 0.75rem 0.9rem;
-  background: #f7f9fc;
+  padding: 0.85rem 1rem;
+  background: #f9fbff;
 }
 
 .fc-footer-text {
@@ -60,24 +60,37 @@
 }
 
 .fc-page-btn {
-  border: 1px solid transparent;
-  background: transparent;
+  border: 1px solid #d9e4f2;
+  background: #fff;
   color: #5b6f8b;
   min-width: 1.7rem;
   height: 1.7rem;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fc-page-btn:hover {
+  border-color: #b4cae7;
+  background: #f4f8ff;
 }
 
 .fc-page-btn.is-active {
-  background: #365787;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border-color: transparent;
   color: #fff;
 }
 
 @media (max-width: 720px) {
   .fc-page-header {
     flex-direction: column;
+  }
+
+  .fc-table-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
   }
 }
