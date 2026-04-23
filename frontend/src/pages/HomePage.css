@@ -1,0 +1,255 @@
+.home-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1rem;
+  color: #0f172a;
+}
+
+.home-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: #ffffff;
+  border: 1px solid #dbe3ef;
+  border-radius: 14px;
+}
+
+.home-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.home-brand-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #e8f1ff;
+  font-size: 1.2rem;
+}
+
+.home-brand-title {
+  margin: 0;
+  font-weight: 700;
+}
+
+.home-brand-subtitle {
+  margin: 0;
+  color: #5f6f86;
+  font-size: 0.9rem;
+}
+
+.home-links {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.home-link {
+  color: #374a66;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  padding: 0.3rem 0.45rem;
+  border-radius: 7px;
+}
+
+.home-link.is-active {
+  color: #1e40af;
+  background: #ebf1ff;
+}
+
+.home-link.is-muted {
+  color: #8a98ab;
+}
+
+.hero-card {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 1rem;
+  align-items: center;
+  background: linear-gradient(135deg, #f5f8fe, #eaf0fb);
+  border: 1px solid #dbe3ef;
+  border-radius: 16px;
+  padding: 1.4rem;
+}
+
+.hero-copy h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1.1;
+}
+
+.hero-copy p {
+  margin: 0;
+  color: #4f617b;
+  max-width: 560px;
+}
+
+.hero-actions {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.btn-primary,
+.btn-outline {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: #fff;
+}
+
+.btn-outline {
+  background: #f8fbff;
+  border-color: #cbd8ea;
+  color: #35507a;
+}
+
+.hero-image {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  min-height: 250px;
+  border: 1px solid #d8e1ef;
+}
+
+.section-wrap {
+  margin-top: 1.1rem;
+  background: #fff;
+  border: 1px solid #dbe3ef;
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.section-wrap h2 {
+  margin: 0 0 0.9rem;
+  text-align: center;
+}
+
+.feature-grid,
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.feature-card,
+.stat-card {
+  background: #fbfdff;
+  border: 1px solid #e1e8f4;
+  border-radius: 12px;
+  padding: 0.9rem;
+  text-align: center;
+}
+
+.feature-icon,
+.stat-icon {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 0.5rem;
+  background: #eaf2ff;
+  font-size: 1.25rem;
+}
+
+.feature-card h3 {
+  margin: 0.2rem 0 0.35rem;
+  font-size: 1.02rem;
+}
+
+.feature-card p {
+  margin: 0;
+  color: #5f6f86;
+  font-size: 0.9rem;
+  min-height: 3rem;
+}
+
+.card-link {
+  margin-top: 0.8rem;
+  display: inline-block;
+  text-decoration: none;
+  border: 1px solid #cdd9ea;
+  border-radius: 9px;
+  padding: 0.45rem 0.75rem;
+  color: #2f4f7d;
+  background: #fff;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.card-link.is-disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.stat-value {
+  margin: 0;
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: #1f4fb4;
+}
+
+.stat-label {
+  margin: 0.25rem 0;
+  font-weight: 600;
+}
+
+.stat-helper {
+  margin: 0;
+  font-size: 0.86rem;
+  color: #677993;
+}
+
+.home-footer {
+  margin-top: 1rem;
+  border-radius: 12px;
+  background: #0f2d67;
+  color: #fff;
+  text-align: center;
+  padding: 0.75rem;
+  font-size: 0.88rem;
+}
+
+@media (max-width: 990px) {
+  .hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-grid,
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .home-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .home-links {
+    flex-wrap: wrap;
+  }
+
+  .feature-grid,
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
