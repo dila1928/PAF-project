@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import heroImage from '../assets/hero.png'
+import heroImage from '../assets/home-hero-campus.png'
 import './HomePage.css'
 
 const features = [
@@ -60,6 +60,14 @@ export function HomePage() {
           <span className="home-link is-muted">Notifications</span>
           <span className="home-link is-muted">About</span>
         </nav>
+        <div className="home-auth">
+          <button type="button" className="auth-btn auth-btn-light">
+            Login
+          </button>
+          <button type="button" className="auth-btn auth-btn-primary">
+            Sign Up
+          </button>
+        </div>
       </header>
 
       <section className="hero-card">
@@ -120,8 +128,51 @@ export function HomePage() {
         </div>
       </section>
 
+      <section className="section-wrap">
+        <h2>Quick Actions</h2>
+        <div className="quick-grid">
+          <Link to="/resources" className="quick-item">
+            <span className="quick-icon">🏛</span>
+            <span>View Resources</span>
+          </Link>
+          <button type="button" className="quick-item">
+            <span className="quick-icon">📅</span>
+            <span>Make a Booking</span>
+          </button>
+          <button type="button" className="quick-item">
+            <span className="quick-icon">🛠</span>
+            <span>Report an Issue</span>
+          </button>
+          <button type="button" className="quick-item">
+            <span className="quick-icon">🔔</span>
+            <span>Check Notifications</span>
+          </button>
+        </div>
+      </section>
+
+      <section className="about-card">
+        <div className="about-copy">
+          <h2>About the System</h2>
+          <p>
+            Smart Campus Operations Hub is a web-based platform designed to improve campus
+            operations by centralizing resource management, booking workflows, maintenance
+            handling, and notifications.
+          </p>
+        </div>
+        <div className="about-visual" aria-hidden="true">
+          <div className="screen">
+            <div className="screen-bar" />
+            <div className="screen-chart" />
+          </div>
+          <div className="phone" />
+        </div>
+      </section>
+
       <footer className="home-footer">
-        <p>© 2026 Smart Campus Operations Hub</p>
+        <div>
+          <p className="footer-brand">Smart Campus Operations Hub</p>
+          <p className="footer-copy">© 2026 All rights reserved.</p>
+        </div>
       </footer>
     </div>
   )
