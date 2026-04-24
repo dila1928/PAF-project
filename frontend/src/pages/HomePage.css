@@ -143,6 +143,8 @@
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
+  display: inline-block;
+  text-align: center;
 }
 
 .btn-primary {
@@ -306,6 +308,8 @@
   font-weight: 700;
   color: #203d71;
   text-decoration: none;
+  cursor: pointer;
+  font: inherit;
 }
 
 .quick-icon {

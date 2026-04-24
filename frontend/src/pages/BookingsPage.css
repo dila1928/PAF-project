@@ -1,0 +1,42 @@
+.bk-page .bk-header-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.bk-mono {
+  font-size: 0.8rem;
+  background: #f1f5f9;
+  padding: 0.12rem 0.35rem;
+  border-radius: 6px;
+}
+
+.bk-res-name {
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.bk-res-id {
+  font-size: 0.72rem;
+  opacity: 0.9;
+}
+
+.bk-status-approved {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.bk-status-pending {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+.bk-status-rejected {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.bk-status-cancelled {
+  background: #e2e8f0;
+  color: #475569;
+}
