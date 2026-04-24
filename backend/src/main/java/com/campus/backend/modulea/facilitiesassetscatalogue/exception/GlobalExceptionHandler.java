@@ -5,6 +5,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.campus.backend.moduleb.bookingmanagement.exception.BookingConflictException;
+import com.campus.backend.moduleb.bookingmanagement.exception.BookingForbiddenException;
+import com.campus.backend.moduleb.bookingmanagement.exception.BookingNotFoundException;
+import com.campus.backend.moduleb.bookingmanagement.exception.InvalidBookingException;
 import com.mongodb.MongoException;
 import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.http.HttpStatus;
@@ -19,6 +23,26 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Map<String, Object>> handleResourceNotFound(ResourceNotFoundException ex) {
         return buildErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    @ExceptionHandler(BookingNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleBookingNotFound(BookingNotFoundException ex) {
+        return buildErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    @ExceptionHandler(BookingConflictException.class)
+    public ResponseEntity<Map<String, Object>> handleBookingConflict(BookingConflictException ex) {
+        return buildErrorResponse(HttpStatus.CONFLICT, ex.getMessage());
+    }
+
+    @ExceptionHandler(BookingForbiddenException.class)
+    public ResponseEntity<Map<String, Object>> handleBookingForbidden(BookingForbiddenException ex) {
+        return buildErrorResponse(HttpStatus.FORBIDDEN, ex.getMessage());
+    }
+
+    @ExceptionHandler(InvalidBookingException.class)
+    public ResponseEntity<Map<String, Object>> handleInvalidBooking(InvalidBookingException ex) {
+        return buildErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

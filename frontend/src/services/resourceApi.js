@@ -1,9 +1,4 @@
-import axios from 'axios'
-
-const client = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL ?? '/api',
-  headers: { 'Content-Type': 'application/json' },
-})
+import { httpClient as client } from './httpClient'
 
 export const RESOURCE_TYPES = [
   'LECTURE_HALL',

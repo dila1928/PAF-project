@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { SiteNav } from '../components/SiteNav'
 import { EditResourceForm } from '../components/facilities/EditResourceForm'
 import '../components/facilities/facilities.css'
 import { getResourceById } from '../services/resourceApi'
@@ -54,8 +55,9 @@ export function EditResource() {
 
   return (
     <div className="fc-page">
+      <SiteNav />
       <p className="fc-edit-breadcrumb">
-        <Link to="/">← Resources / Management</Link>
+        <Link to="/resources">← Resources / Management</Link>
       </p>
 
       {loading && <p className="fc-muted">Loading resource…</p>}
@@ -71,8 +73,8 @@ export function EditResource() {
           <EditResourceForm
             key={resource.id}
             resource={resource}
-            onSaved={() => navigate('/')}
-            onCancel={() => navigate('/')}
+            onSaved={() => navigate('/resources')}
+            onCancel={() => navigate('/resources')}
           />
         </>
       )}

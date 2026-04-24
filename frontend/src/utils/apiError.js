@@ -20,7 +20,19 @@ export function getApiErrorMessage(err) {
   }
   const data = err?.response?.data
   if (data?.message != null) {
-    return typeof data.message === 'string' ? data.message : JSON.stringify(data.message)
+    const raw = typeof data.message === 'string' ? data.message : JSON.stringify(data.message)
+    if (
+      err?.response?.status === 404 &&
+      typeof data.message === 'string' &&
+      data.message.includes('No static resource')
+    ) {
+      return (
+        `${raw} ` +
+        'Usually this means the backend on port 8080 is an old build without the booking API. ' +
+        'Stop the running Java process, then from the backend folder run: .\\mvnw.cmd spring-boot:run'
+      )
+    }
+    return raw
   }
   return err?.message ?? 'Request failed'
 }

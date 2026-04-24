@@ -14,7 +14,8 @@ const features = [
     icon: '📅',
     title: 'Booking Management',
     description: 'Request, approve, and manage bookings with conflict prevention.',
-    action: 'Coming Soon',
+    action: 'Book a resource',
+    to: '/bookings/new',
   },
   {
     icon: '🛠',
@@ -55,7 +56,9 @@ export function HomePage() {
           <Link to="/resources" className="home-link">
             Resources
           </Link>
-          <span className="home-link is-muted">Bookings</span>
+          <Link to="/bookings" className="home-link">
+            Bookings
+          </Link>
           <span className="home-link is-muted">Tickets</span>
           <span className="home-link is-muted">Notifications</span>
           <span className="home-link is-muted">About</span>
@@ -81,9 +84,9 @@ export function HomePage() {
             <Link to="/resources" className="btn-primary">
               Explore Resources
             </Link>
-            <button type="button" className="btn-outline">
+            <Link to="/bookings/new" className="btn-outline">
               Make a Booking
-            </button>
+            </Link>
             <button type="button" className="btn-outline">
               Report an Issue
             </button>
@@ -135,10 +138,10 @@ export function HomePage() {
             <span className="quick-icon">🏛</span>
             <span>View Resources</span>
           </Link>
-          <button type="button" className="quick-item">
+          <Link to="/bookings/new" className="quick-item">
             <span className="quick-icon">📅</span>
             <span>Make a Booking</span>
-          </button>
+          </Link>
           <button type="button" className="quick-item">
             <span className="quick-icon">🛠</span>
             <span>Report an Issue</span>

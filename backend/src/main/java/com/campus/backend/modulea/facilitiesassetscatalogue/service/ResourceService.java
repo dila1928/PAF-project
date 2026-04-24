@@ -48,6 +48,11 @@ public class ResourceService {
         return mapToResponse(resource);
     }
 
+    /** Exposes the entity for other modules (e.g. booking validation). */
+    public Resource getResourceEntityById(String id) {
+        return findByIdOrThrow(id);
+    }
+
     public ResourceResponse updateResource(String id, ResourceRequest request) {
         Resource existingResource = findByIdOrThrow(id);
 
