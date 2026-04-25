@@ -9,3 +9,8 @@
   align-items: center;
   margin-top: 0.25rem;
 }
+
+.bk-new-form input::placeholder,
+.bk-new-form textarea::placeholder {
+  color: rgb(71 85 105 / 45%);
+}

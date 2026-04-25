@@ -17,6 +17,51 @@ const initialForm = {
   expectedAttendees: '',
 }
 
+function todayIsoDate() {
+  const today = new Date()
+  const year = today.getFullYear()
+  const month = String(today.getMonth() + 1).padStart(2, '0')
+  const day = String(today.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
+
+function validateForm(form) {
+  const errors = {}
+  const minDate = todayIsoDate()
+  const start = toApiTime(form.startTime)
+  const end = toApiTime(form.endTime)
+  const purpose = form.purpose.trim()
+  const attendeesRaw = form.expectedAttendees.trim()
+
+  if (!form.resourceId) errors.resourceId = 'Please select a resource.'
+  if (!form.bookingDate) {
+    errors.bookingDate = 'Please select a booking date.'
+  } else if (form.bookingDate < minDate) {
+    errors.bookingDate = 'Booking date cannot be in the past.'
+  }
+
+  if (!form.startTime) errors.startTime = 'Please select a start time.'
+  if (!form.endTime) errors.endTime = 'Please select an end time.'
+  if (start && end && start >= end) {
+    errors.endTime = 'End time must be after start time.'
+  }
+
+  if (!purpose) {
+    errors.purpose = 'Purpose is required.'
+  } else if (purpose.length < 5) {
+    errors.purpose = 'Purpose must be at least 5 characters.'
+  }
+
+  if (attendeesRaw !== '') {
+    const attendees = Number(attendeesRaw)
+    if (!Number.isInteger(attendees) || attendees <= 0) {
+      errors.expectedAttendees = 'Expected attendees must be a positive whole number.'
+    }
+  }
+
+  return errors
+}
+
 export function NewBookingPage() {
   const [params] = useSearchParams()
   const navigate = useNavigate()
@@ -25,6 +70,8 @@ export function NewBookingPage() {
   const [loadingList, setLoadingList] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState(null)
+  const [fieldErrors, setFieldErrors] = useState({})
+  const minBookingDate = todayIsoDate()
 
   useEffect(() => {
     let cancelled = false
@@ -56,12 +103,25 @@ export function NewBookingPage() {
   }, [params])
 
   function update(field, value) {
+    if (fieldErrors[field]) {
+      setFieldErrors((prev) => {
+        const next = { ...prev }
+        delete next[field]
+        return next
+      })
+    }
     setForm((prev) => ({ ...prev, [field]: value }))
   }
 
   async function handleSubmit(e) {
     e.preventDefault()
     setError(null)
+    const validationErrors = validateForm(form)
+    setFieldErrors(validationErrors)
+    if (Object.keys(validationErrors).length > 0) {
+      setError('Please fix the highlighted fields and try again.')
+      return
+    }
     setSubmitting(true)
     try {
       const attendeesRaw = form.expectedAttendees.trim()
@@ -126,15 +186,20 @@ export function NewBookingPage() {
                   </option>
                 ))}
               </select>
+              {fieldErrors.resourceId && <p className="fc-error">{fieldErrors.resourceId}</p>}
             </label>
             <label className="fc-field">
               Date
               <input
                 type="date"
                 required
+                min={minBookingDate}
                 value={form.bookingDate}
                 onChange={(e) => update('bookingDate', e.target.value)}
+                onFocus={(e) => e.target.showPicker?.()}
+                onKeyDown={(e) => e.preventDefault()}
               />
+              {fieldErrors.bookingDate && <p className="fc-error">{fieldErrors.bookingDate}</p>}
             </label>
             <label className="fc-field">
               Start time
@@ -143,7 +208,10 @@ export function NewBookingPage() {
                 required
                 value={form.startTime}
                 onChange={(e) => update('startTime', e.target.value)}
+                onFocus={(e) => e.target.showPicker?.()}
+                onKeyDown={(e) => e.preventDefault()}
               />
+              {fieldErrors.startTime && <p className="fc-error">{fieldErrors.startTime}</p>}
             </label>
             <label className="fc-field">
               End time
@@ -152,7 +220,10 @@ export function NewBookingPage() {
                 required
                 value={form.endTime}
                 onChange={(e) => update('endTime', e.target.value)}
+                onFocus={(e) => e.target.showPicker?.()}
+                onKeyDown={(e) => e.preventDefault()}
               />
+              {fieldErrors.endTime && <p className="fc-error">{fieldErrors.endTime}</p>}
             </label>
             <label className="fc-field fc-field-span2">
               Purpose
@@ -163,6 +234,7 @@ export function NewBookingPage() {
                 onChange={(e) => update('purpose', e.target.value)}
                 placeholder="Required: e.g. weekly project meeting, guest lecture, exam session…"
               />
+              {fieldErrors.purpose && <p className="fc-error">{fieldErrors.purpose}</p>}
             </label>
             <label className="fc-field fc-field-span2">
               Expected attendees
@@ -173,6 +245,9 @@ export function NewBookingPage() {
                 value={form.expectedAttendees}
                 onChange={(e) => update('expectedAttendees', e.target.value)}
               />
+              {fieldErrors.expectedAttendees && (
+                <p className="fc-error">{fieldErrors.expectedAttendees}</p>
+              )}
             </label>
             <div className="fc-field-span2 bk-new-actions">
               <button type="submit" className="fc-btn fc-btn-primary" disabled={submitting}>
