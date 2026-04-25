@@ -14,7 +14,8 @@ const features = [
     icon: '📅',
     title: 'Booking Management',
     description: 'Request, approve, and manage bookings with conflict prevention.',
-    action: 'Coming Soon',
+    action: 'Book a resource',
+    to: '/bookings/new',
   },
   {
     icon: '🛠',
@@ -40,6 +41,41 @@ const stats = [
 export function HomePage() {
   return (
     <div className="home-shell">
+<<<<<<< HEAD
+=======
+      <header className="home-nav">
+        <div className="home-brand">
+          <div className="home-brand-icon">🏛</div>
+          <div>
+            <p className="home-brand-title">Smart Campus</p>
+            <p className="home-brand-subtitle">Operations Hub</p>
+          </div>
+        </div>
+        <nav className="home-links" aria-label="Main navigation">
+          <Link to="/" className="home-link is-active">
+            Home
+          </Link>
+          <Link to="/resources" className="home-link">
+            Resources
+          </Link>
+          <Link to="/bookings" className="home-link">
+            Bookings
+          </Link>
+          <span className="home-link is-muted">Tickets</span>
+          <span className="home-link is-muted">Notifications</span>
+          <span className="home-link is-muted">About</span>
+        </nav>
+        <div className="home-auth">
+          <button type="button" className="auth-btn auth-btn-light">
+            Login
+          </button>
+          <button type="button" className="auth-btn auth-btn-primary">
+            Sign Up
+          </button>
+        </div>
+      </header>
+
+>>>>>>> e01031bc289205fd1597bf410baaa83ae618f1d9
       <section className="hero-card">
         <div className="hero-copy">
           <h1>Smart Campus Operations Hub</h1>
@@ -51,9 +87,9 @@ export function HomePage() {
             <Link to="/resources/available" className="btn-primary">
               Explore Resources
             </Link>
-            <button type="button" className="btn-outline">
+            <Link to="/bookings/new" className="btn-outline">
               Make a Booking
-            </button>
+            </Link>
             <button type="button" className="btn-outline">
               Report an Issue
             </button>
@@ -105,10 +141,10 @@ export function HomePage() {
             <span className="quick-icon">🏛</span>
             <span>View Resources</span>
           </Link>
-          <button type="button" className="quick-item">
+          <Link to="/bookings/new" className="quick-item">
             <span className="quick-icon">📅</span>
             <span>Make a Booking</span>
-          </button>
+          </Link>
           <button type="button" className="quick-item">
             <span className="quick-icon">🛠</span>
             <span>Report an Issue</span>

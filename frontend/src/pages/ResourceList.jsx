@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { SiteNav } from '../components/SiteNav'
 import { AddResourceForm } from '../components/facilities/AddResourceForm'
 import '../components/facilities/facilities.css'
 import './ResourceList.css'
@@ -78,6 +79,7 @@ export function ResourceList() {
 
   return (
     <div className="fc-page">
+      <SiteNav />
       <header className="fc-page-header">
         <div>
           <h1 className="fc-page-title">Facilities Management</h1>
@@ -146,6 +148,13 @@ export function ResourceList() {
                       <td>{r.description?.trim() ? r.description : '—'}</td>
                       <td>
                         <div className="fc-actions">
+                          <Link
+                            to={`/bookings/new?resourceId=${encodeURIComponent(r.id)}`}
+                            className="fc-btn fc-btn-primary fc-btn-small"
+                            title="Request booking"
+                          >
+                            Book
+                          </Link>
                           <Link
                             to={`/resources/${r.id}/edit`}
                             className="fc-btn fc-btn-ghost fc-btn-small"

@@ -1,0 +1,11 @@
+.bk-new-form.bk-new-form {
+  max-width: 720px;
+}
+
+.bk-new-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+  margin-top: 0.25rem;
+}
