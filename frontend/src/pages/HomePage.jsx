@@ -8,7 +8,7 @@ const features = [
     title: 'Facilities & Assets Catalogue',
     description: 'Browse and manage lecture halls, labs, meeting rooms, and equipment.',
     action: 'View Resources',
-    to: '/resources',
+    to: '/resources/available',
   },
   {
     icon: '📅',
@@ -40,36 +40,6 @@ const stats = [
 export function HomePage() {
   return (
     <div className="home-shell">
-      <header className="home-nav">
-        <div className="home-brand">
-          <div className="home-brand-icon">🏛</div>
-          <div>
-            <p className="home-brand-title">Smart Campus</p>
-            <p className="home-brand-subtitle">Operations Hub</p>
-          </div>
-        </div>
-        <nav className="home-links" aria-label="Main navigation">
-          <Link to="/" className="home-link is-active">
-            Home
-          </Link>
-          <Link to="/resources" className="home-link">
-            Resources
-          </Link>
-          <span className="home-link is-muted">Bookings</span>
-          <span className="home-link is-muted">Tickets</span>
-          <span className="home-link is-muted">Notifications</span>
-          <span className="home-link is-muted">About</span>
-        </nav>
-        <div className="home-auth">
-          <button type="button" className="auth-btn auth-btn-light">
-            Login
-          </button>
-          <button type="button" className="auth-btn auth-btn-primary">
-            Sign Up
-          </button>
-        </div>
-      </header>
-
       <section className="hero-card">
         <div className="hero-copy">
           <h1>Smart Campus Operations Hub</h1>
@@ -78,7 +48,7 @@ export function HomePage() {
             notifications efficiently and securely.
           </p>
           <div className="hero-actions">
-            <Link to="/resources" className="btn-primary">
+            <Link to="/resources/available" className="btn-primary">
               Explore Resources
             </Link>
             <button type="button" className="btn-outline">
@@ -131,7 +101,7 @@ export function HomePage() {
       <section className="section-wrap">
         <h2>Quick Actions</h2>
         <div className="quick-grid">
-          <Link to="/resources" className="quick-item">
+          <Link to="/resources/available" className="quick-item">
             <span className="quick-icon">🏛</span>
             <span>View Resources</span>
           </Link>

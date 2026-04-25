@@ -5,6 +5,7 @@ import {
   createResource,
 } from '../../services/resourceApi'
 import { getApiErrorMessage } from '../../utils/apiError'
+import { validateResourceForm } from '../../utils/resourceValidation'
 import { toApiTime } from '../../utils/timeFormat'
 import './facilities.css'
 
@@ -31,6 +32,13 @@ export function AddResourceForm({ onCreated, onCancel }) {
   async function handleSubmit(e) {
     e.preventDefault()
     setError(null)
+
+    const validationError = validateResourceForm(form, RESOURCE_TYPES, RESOURCE_STATUSES)
+    if (validationError) {
+      setError(validationError)
+      return
+    }
+
     setSubmitting(true)
     try {
       const payload = {
@@ -68,6 +76,8 @@ export function AddResourceForm({ onCreated, onCancel }) {
           <span>Name</span>
           <input
             required
+            minLength={3}
+            maxLength={100}
             value={form.name}
             onChange={(e) => update('name', e.target.value)}
           />
@@ -91,6 +101,8 @@ export function AddResourceForm({ onCreated, onCancel }) {
             type="number"
             required
             min={1}
+            max={5000}
+            step={1}
             value={form.capacity}
             onChange={(e) => update('capacity', e.target.value)}
           />
@@ -99,6 +111,8 @@ export function AddResourceForm({ onCreated, onCancel }) {
           <span>Location</span>
           <input
             required
+            minLength={3}
+            maxLength={120}
             value={form.location}
             onChange={(e) => update('location', e.target.value)}
           />
@@ -138,6 +152,7 @@ export function AddResourceForm({ onCreated, onCancel }) {
           <span>Description (optional)</span>
           <textarea
             rows={3}
+            maxLength={500}
             value={form.description}
             onChange={(e) => update('description', e.target.value)}
           />

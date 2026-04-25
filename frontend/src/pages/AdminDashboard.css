@@ -1,0 +1,138 @@
+.ad-page {
+  padding: 0.25rem 0 1rem;
+}
+
+.ad-header {
+  border: 1px solid #d7e1ee;
+  border-radius: 14px;
+  padding: 1rem;
+  background: linear-gradient(140deg, #f7faff, #eef4ff);
+}
+
+.ad-header h1 {
+  margin: 0;
+  color: #102d60;
+}
+
+.ad-header p {
+  margin: 0.35rem 0 0;
+  color: #4f6280;
+}
+
+.ad-summary-grid {
+  margin-top: 0.85rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.ad-summary-card {
+  border: 1px solid #d7e1ee;
+  border-radius: 12px;
+  background: #fff;
+  padding: 0.8rem;
+}
+
+.ad-summary-icon {
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #eef4ff;
+  font-size: 1.1rem;
+}
+
+.ad-summary-value {
+  margin: 0.45rem 0 0.15rem;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #0f2f65;
+}
+
+.ad-summary-label {
+  margin: 0;
+  color: #5a6d88;
+  font-size: 0.88rem;
+}
+
+.ad-summary-card.is-green .ad-summary-icon {
+  background: #ebf9f0;
+}
+
+.ad-summary-card.is-orange .ad-summary-icon {
+  background: #fff3e6;
+}
+
+.ad-summary-card.is-purple .ad-summary-icon {
+  background: #f3ecff;
+}
+
+.ad-grid {
+  margin-top: 0.85rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.ad-card {
+  border: 1px solid #d7e1ee;
+  border-radius: 12px;
+  background: #fff;
+  padding: 0.85rem;
+  box-shadow: 0 8px 18px rgb(15 23 42 / 6%);
+}
+
+.ad-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ad-card-icon {
+  width: 1.9rem;
+  height: 1.9rem;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: #edf3ff;
+}
+
+.ad-card h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.ad-card p {
+  margin: 0.4rem 0 0.75rem;
+  color: #5a6d88;
+  font-size: 0.9rem;
+}
+
+.ad-link {
+  display: inline-block;
+  text-decoration: none;
+  border: 1px solid #c7d7ef;
+  border-radius: 8px;
+  padding: 0.35rem 0.55rem;
+  color: #1f4f98;
+  font-weight: 600;
+}
+
+.ad-link.is-disabled {
+  opacity: 0.6;
+}
+
+@media (max-width: 960px) {
+  .ad-summary-grid,
+  .ad-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .ad-summary-grid,
+  .ad-grid {
+    grid-template-columns: 1fr;
+  }
+}

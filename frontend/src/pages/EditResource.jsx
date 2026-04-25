@@ -55,7 +55,7 @@ export function EditResource() {
   return (
     <div className="fc-page">
       <p className="fc-edit-breadcrumb">
-        <Link to="/">← Resources / Management</Link>
+        <Link to="/resources/facilities">← Resources / Management</Link>
       </p>
 
       {loading && <p className="fc-muted">Loading resource…</p>}
@@ -71,8 +71,8 @@ export function EditResource() {
           <EditResourceForm
             key={resource.id}
             resource={resource}
-            onSaved={() => navigate('/')}
-            onCancel={() => navigate('/')}
+            onSaved={() => navigate('/resources/facilities')}
+            onCancel={() => navigate('/resources/facilities')}
           />
         </>
       )}

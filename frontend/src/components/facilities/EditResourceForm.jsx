@@ -5,6 +5,7 @@ import {
   updateResource,
 } from '../../services/resourceApi'
 import { getApiErrorMessage } from '../../utils/apiError'
+import { validateResourceForm } from '../../utils/resourceValidation'
 import { toApiTime, toTimeInputValue } from '../../utils/timeFormat'
 import './facilities.css'
 import './editResourceForm.css'
@@ -38,6 +39,13 @@ export function EditResourceForm({ resource, onSaved, onCancel }) {
   async function handleSubmit(e) {
     e.preventDefault()
     setError(null)
+
+    const validationError = validateResourceForm(form, RESOURCE_TYPES, RESOURCE_STATUSES)
+    if (validationError) {
+      setError(validationError)
+      return
+    }
+
     setSubmitting(true)
     try {
       const payload = {
@@ -82,6 +90,8 @@ export function EditResourceForm({ resource, onSaved, onCancel }) {
               <span>Resource Name</span>
               <input
                 required
+                minLength={3}
+                maxLength={100}
                 value={form.name}
                 onChange={(e) => update('name', e.target.value)}
               />
@@ -105,6 +115,8 @@ export function EditResourceForm({ resource, onSaved, onCancel }) {
                 type="number"
                 required
                 min={1}
+                max={5000}
+                step={1}
                 value={form.capacity}
                 onChange={(e) => update('capacity', e.target.value)}
               />
@@ -113,6 +125,8 @@ export function EditResourceForm({ resource, onSaved, onCancel }) {
               <span>Location / Physical Address</span>
               <input
                 required
+                minLength={3}
+                maxLength={120}
                 value={form.location}
                 onChange={(e) => update('location', e.target.value)}
               />
@@ -121,6 +135,7 @@ export function EditResourceForm({ resource, onSaved, onCancel }) {
               <span>Detailed Description</span>
               <textarea
                 rows={4}
+                maxLength={500}
                 value={form.description}
                 onChange={(e) => update('description', e.target.value)}
               />

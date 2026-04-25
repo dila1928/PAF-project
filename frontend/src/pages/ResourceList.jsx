@@ -1,17 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AddResourceForm } from '../components/facilities/AddResourceForm'
-import { SearchFilter } from '../components/facilities/SearchFilter'
 import '../components/facilities/facilities.css'
 import './ResourceList.css'
-import {
-  deleteResource,
-  fetchResources,
-  searchResources,
-} from '../services/resourceApi'
+import { deleteResource, fetchResources } from '../services/resourceApi'
 import { getApiErrorMessage } from '../utils/apiError'
-
-const initialFilters = { type: '', location: '', minCapacity: '' }
 
 function formatLabel(value) {
   if (value == null) return '—'
@@ -24,29 +17,17 @@ function getStatusClass(status) {
   return 'fc-status-default'
 }
 
-function hasActiveFilters(f) {
-  return (
-    Boolean(f.type) ||
-    Boolean(f.location?.trim()) ||
-    (f.minCapacity !== '' && f.minCapacity != null)
-  )
-}
-
 export function ResourceList() {
   const [resources, setResources] = useState([])
   const [loading, setLoading] = useState(true)
   const [listError, setListError] = useState(null)
-  const [filters, setFilters] = useState(initialFilters)
   const [showAdd, setShowAdd] = useState(false)
 
-  async function loadResources(snapshot) {
-    const f = snapshot !== undefined ? snapshot : filters
+  async function loadResources() {
     setLoading(true)
     setListError(null)
     try {
-      const data = hasActiveFilters(f)
-        ? await searchResources(f)
-        : await fetchResources()
+      const data = await fetchResources()
       setResources(Array.isArray(data) ? data : [])
     } catch (err) {
       setListError(getApiErrorMessage(err))
@@ -83,19 +64,6 @@ export function ResourceList() {
     }
   }, [])
 
-  function handleFilterChange(field, value) {
-    setFilters((prev) => ({ ...prev, [field]: value }))
-  }
-
-  function handleApplyFilters() {
-    loadResources(filters)
-  }
-
-  function handleResetFilters() {
-    setFilters(initialFilters)
-    loadResources(initialFilters)
-  }
-
   async function handleDelete(id) {
     if (!window.confirm('Delete this resource? This cannot be undone.')) {
       return
@@ -112,7 +80,7 @@ export function ResourceList() {
     <div className="fc-page">
       <header className="fc-page-header">
         <div>
-          <h1 className="fc-page-title">Resource Management</h1>
+          <h1 className="fc-page-title">Facilities Management</h1>
           <p className="fc-page-sub">
             Oversee and organize all campus structural assets and equipment.
           </p>
@@ -125,13 +93,6 @@ export function ResourceList() {
           {showAdd ? 'Hide Form' : '+ Add Resource'}
         </button>
       </header>
-
-      <SearchFilter
-        values={filters}
-        onChange={handleFilterChange}
-        onSearch={handleApplyFilters}
-        onReset={handleResetFilters}
-      />
 
       {showAdd && (
         <AddResourceForm
