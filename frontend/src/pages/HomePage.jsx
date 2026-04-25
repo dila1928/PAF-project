@@ -41,8 +41,6 @@ const stats = [
 export function HomePage() {
   return (
     <div className="home-shell">
-<<<<<<< HEAD
-=======
       <header className="home-nav">
         <div className="home-brand">
           <div className="home-brand-icon">🏛</div>
@@ -55,7 +53,7 @@ export function HomePage() {
           <Link to="/" className="home-link is-active">
             Home
           </Link>
-          <Link to="/resources" className="home-link">
+          <Link to="/resources/available" className="home-link">
             Resources
           </Link>
           <Link to="/bookings" className="home-link">
@@ -74,8 +72,6 @@ export function HomePage() {
           </button>
         </div>
       </header>
-
->>>>>>> e01031bc289205fd1597bf410baaa83ae618f1d9
       <section className="hero-card">
         <div className="hero-copy">
           <h1>Smart Campus Operations Hub</h1>
